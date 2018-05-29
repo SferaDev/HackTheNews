@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "node"
+
+branches:
+  except:
+    - gh-pages # will be deployed to, no need to build it
+
+script:
+  - npm run build # Generates the dist folder with built angular app
+
+after_success:
+  - cd dist/HacksTheNews
+  - git init
+  - git config user.name Alexis Rico
+  - git config user.email sferadev@gmail.com
+  - git add .
+  - git commit -m "GitHub Pages deployment"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1ng ser

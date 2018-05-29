@@ -1,0 +1,19 @@
+<app-toolbarce></app-toolbarce>
+
+<div class="contribution-list">
+    <mat-nav-list>
+        <mat-list-item *ngFor="let contribution of contributions">
+            <div (click)="upvoted=!upvoted">
+                <mat-icon *ngIf=upvoted svgIcon="thumbs-down    "></mat-icon>
+                <mat-icon *ngIf=!upvoted svgIcon="thumbs-up"></mat-icon>
+            </div>
+            <p>
+                <span class="contribution-title">{{ contribution.title }}</span>
+                <span *ngIf="contribution['url']" class="contribution-url">({{ contribution.tld }})</span>
+            </p>
+            <div class="contribution-information">
+                <span></span>
+            </div>
+        </mat-list-item>
+    </mat-nav-list>
+</div>

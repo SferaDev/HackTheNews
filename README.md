@@ -1,9 +1,9 @@
 # HacksTheNews
-[![Build Status](https://travis-ci.com/SferaDev/HacksTheNews.svg?branch=master)](https://travis-ci.com/SferaDev/HacksTheNews)
+[![Build Status](https://travis-ci.com/SferaDev/HackTheNews.svg?branch=master)](https://travis-ci.com/SferaDev/HacksTheNews)
 
 ## Deployment
 
-Not yet Available
+[http://sferadev.com/HacksTheNews](http://sferadev.com/HacksTheNews)
 
 ## Team
 
