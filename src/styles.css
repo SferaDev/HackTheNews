@@ -4,7 +4,6 @@ body {
     padding: 0;
     margin: 0;
     height: 100vh;
-
 }
 
 .fill-space {
@@ -25,4 +24,29 @@ a.toolbar-element {
     font-size: 16px;
     margin-left: 3px;
     margin-right: 3px;
+}
+
+.contribution-title {
+    font-size: 18px;
+    /*color: #b92b27;*/
+}
+
+.contribution-url {
+    font-size: 16px;
+    color: grey;
+    margin-left: 5px;
+}
+
+.contribution-info {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.highlight-info {
+    color: #217093;
+}
+
+ul.comment-list {
+    padding-left: 1px;
 }

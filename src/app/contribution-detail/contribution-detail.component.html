@@ -1,0 +1,63 @@
+<div class="new-message-toolbar" mat-dialog-title>
+    <mat-icon>add</mat-icon>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>clear</mat-icon>
+    </button>
+</div>
+<mat-dialog-content class="submit-post-content" *ngIf="canRender">
+    <div class="comment-list">
+        <ng-template #recursiveList let-list>
+            <ul class="comment-list" *ngFor="let comment of list">
+                <div mat-line style="margin-top: 10px">
+                    <div class="contribution-info">
+                        <mat-icon [svgIcon]='getCommentLikedByMe(comment) ? "thumbs-down" : "thumbs-up"'
+                                  (click)="handleCommentLike(comment)"></mat-icon>
+                        <span class="highlight-info" (click)="openProfile(comment.owner)">&nbsp; {{ comment.owner.username }}</span>
+                        <span class="comment-score">&nbsp; ({{ comment.totalLikes }})</span>
+                        <span>&nbsp;{{ comment.date | timeAgo }}</span>
+
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon [svgIcon]='"three-dots"'></mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item [disabled]="comment.owner.username !== currentUsername || comment.deleted"
+                                    (click)="editComment(comment)">
+                                    <span>
+                                        Edit
+                                    </span>
+                            </button>
+                            <button mat-menu-item [disabled]="comment.owner.username !== currentUsername || comment.deleted"
+                                    (click)="deleteComment(comment)">
+                                    <span>
+                                        Delete
+                                    </span>
+                            </button>
+                            <button mat-menu-item (click)="replyToComment(comment)">
+                                    <span>
+                                        Reply
+                                    </span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div mat-line>
+                    <span>{{ comment.comment }}</span>
+                </div>
+
+                <ul *ngIf="comment.replies.length > 0">
+                    <ng-container
+                            *ngTemplateOutlet="recursiveList; context:{ $implicit: comment.replies }"></ng-container>
+                </ul>
+            </ul>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: contribution.comments }"></ng-container>
+    </div>
+    <br>
+    <mat-form-field class="text-input">
+        <textarea #commentText matInput placeholder="Comment" rows="3"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="addComment(commentText.value, undefined)">
+        Add Comment
+    </button>
+</mat-dialog-content>

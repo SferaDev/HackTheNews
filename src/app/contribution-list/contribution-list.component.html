@@ -1,19 +1,46 @@
-<app-toolbarce></app-toolbarce>
+<app-toolbar></app-toolbar>
 
 <div class="contribution-list">
-    <mat-nav-list>
-        <mat-list-item *ngFor="let contribution of contributions">
-            <div (click)="upvoted=!upvoted">
-                <mat-icon *ngIf=upvoted svgIcon="thumbs-down    "></mat-icon>
-                <mat-icon *ngIf=!upvoted svgIcon="thumbs-up"></mat-icon>
-            </div>
-            <p>
-                <span class="contribution-title">{{ contribution.title }}</span>
-                <span *ngIf="contribution['url']" class="contribution-url">({{ contribution.tld }})</span>
-            </p>
-            <div class="contribution-information">
-                <span></span>
-            </div>
-        </mat-list-item>
-    </mat-nav-list>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let contribution of contributions" style="padding-top: 20px; padding-bottom: 20px">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="contribution-title">
+                    <span (click)="viewContribution(contribution)">{{ contribution.title }}</span>
+                    <span class="contribution-url" *ngIf="contribution['url']">({{ contribution.tld }})</span>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span class="contribution-subtitle">
+                        Posted {{ contribution.date | timeAgo}} by <span (click)="openProfile(contribution.owner)">{{ contribution.owner.username}}</span> with {{ contribution.totalLikes }} points and {{ contribution.totalComments}} comments
+                    </span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{contribution.text}}</p>
+            <mat-action-row>
+                <button mat-icon-button (click)="handleLike(contribution)" matTooltip="Like" matTooltipPosition="above">
+                    <mat-icon class="like-button"
+                              [svgIcon]='getLikedByMe(contribution) ? "thumbs-down" : "thumbs-up"'></mat-icon>
+                </button>
+                <button mat-icon-button (click)="viewComments(contribution)" matTooltip="Comment" matTooltipPosition="above">
+                    <mat-icon>question_answer</mat-icon>
+                </button>
+                <button mat-icon-button [disabled]="contribution.owner.username !== currentUsername"
+                        (click)="editContribution(contribution)" matTooltip="Edit" matTooltipPosition="above">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button [disabled]="contribution.owner.username !== currentUsername"
+                        (click)="deleteContribution(contribution)" matTooltip="Delete" matTooltipPosition="above">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
+<button
+        mat-fab
+        color="accent"
+        class="new-fab"
+        (click)="onNewMessage()"
+        matTooltip="New Message"
+        matTooltipPosition="before">
+    <mat-icon>add</mat-icon>
+</button>

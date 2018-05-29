@@ -1,0 +1,29 @@
+<div *ngIf="canRender">
+    <div class="new-message-toolbar" mat-dialog-title>
+        <img class="avatar" [src]="currentUser.picture">
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content>
+        <br>
+        <h1>{{userToDisplay.fullName}}</h1>
+        <h2>{{userToDisplay.username}}</h2>
+        <button mat-raised-button (click)="showThreads(userToDisplay.username)" [mat-dialog-close]="true">Comments</button>
+        <div *ngIf="userToDisplay.username === currentUser.username">
+            <mat-form-field class="text-input">
+                <textarea #aboutText matInput placeholder="About" rows="3">{{userToDisplay.about}}</textarea>
+            </mat-form-field>
+        </div>
+        <div *ngIf="userToDisplay.username !== currentUser.username">
+            <mat-card>{{ userToDisplay.about }}</mat-card>
+        </div>
+        <br>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-icon-button mat-dialog-close (click)="updateAbout(aboutText.value)" matTooltip="Update"
+                [disabled]="userToDisplay.username !== currentUser.username">
+            <mat-icon>update</mat-icon>
+        </button>
+    </mat-dialog-actions>
+</div>

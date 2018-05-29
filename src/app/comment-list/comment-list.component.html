@@ -1,0 +1,19 @@
+<app-toolbar></app-toolbar>
+
+<div class="contribution-list">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let contribution of contributions" style="padding-top: 20px; padding-bottom: 20px">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="contribution-title">
+          <span>{{ contribution.comment }}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+                    <span class="contribution-subtitle">
+                        Posted {{ contribution.date | timeAgo}} by <span (click)="openProfile(contribution.owner)">{{ contribution.owner.username}}</span> with {{ contribution.totalLikes }} points and {{ contribution.totalComments}} comments
+                    </span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{contribution.text}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

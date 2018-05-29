@@ -1,20 +1,48 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {MatToolbarModule, MatListModule, MatIconModule} from '@angular/material';
+import {
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatSnackBarModule,
+    MatToolbarModule, MatTooltipModule
+} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {ToolbarceComponent} from './toolbarce/toolbarce.component';
+import {ToolbarComponent} from './toolbar/toolbar.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ContributionListComponent} from './contribution-list/contribution-list.component';
-import {ContributionComponent} from './contribution/contribution.component';
+import {AuthCallbackComponent} from './auth-callback/auth-callback.component';
+import {LoginComponent} from './login/login.component';
+import {SubmitPostComponent} from './submit-post/submit-post.component';
+import { ContributionDetailComponent } from './contribution-detail/contribution-detail.component';
+import { ProfileComponent } from './profile/profile.component'
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { CommentListComponent } from './comment-list/comment-list.component';
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        ToolbarceComponent,
+        ToolbarComponent,
+        AuthCallbackComponent,
+        TimeAgoPipe,
+        LoginComponent,
+        SubmitPostComponent,
         ContributionListComponent,
-        ContributionComponent
+        ContributionDetailComponent,
+        ProfileComponent,
+        CommentListComponent
     ],
     imports: [
         BrowserModule,
@@ -22,10 +50,28 @@ import {ContributionComponent} from './contribution/contribution.component';
         MatListModule,
         MatIconModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatExpansionModule,
+        MatCardModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatBadgeModule,
+        FlexLayoutModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        SubmitPostComponent,
+        ContributionDetailComponent,
+        ProfileComponent
+    ]
 })
 export class AppModule {
+
 }

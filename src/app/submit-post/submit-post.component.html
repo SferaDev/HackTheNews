@@ -1,0 +1,26 @@
+<div class="new-message-toolbar" mat-dialog-title>
+    <mat-icon>add</mat-icon>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>clear</mat-icon>
+    </button>
+</div>
+<mat-dialog-content class="submit-post-content">
+    <br>
+    <mat-form-field class="title-input">
+        <input #postTitle matInput placeholder="Title" required />
+    </mat-form-field>
+    <br>
+    <mat-form-field class="url-input">
+        <input #postUrl matInput placeholder="Url" />
+    </mat-form-field>
+    <br>
+    <mat-form-field class="text-input">
+        <textarea #postText matInput placeholder="Text" rows="10"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-icon-button color="primary" [mat-dialog-close]="true"
+            (click)="addPost(postTitle.value, postUrl.value, postText.value)">
+        <mat-icon>send</mat-icon>
+    </button>
+</mat-dialog-actions>

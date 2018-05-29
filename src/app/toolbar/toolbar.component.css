@@ -1,0 +1,13 @@
+.mat-toolbar {
+    background: #217093;
+    color: hsla(0, 0%, 100%, .9);
+    letter-spacing: 1px;
+}
+
+.toolbar-title {
+    margin-right: 25px;
+}
+
+.avatar {
+    height: 30px;
+}

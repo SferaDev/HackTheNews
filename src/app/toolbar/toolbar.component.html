@@ -1,0 +1,21 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div fxLayout="row" fxShow="false" fxShow.gt-xs>
+        <a routerLink="/news" class="toolbar-title">Hack The News</a>
+        </div>
+        <button mat-icon-button routerLink="/newest" matTooltip="Recent">
+            <mat-icon class="toolbar-icon">fiber_new</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="/news" matTooltip="Url Posts">
+            <mat-icon class="toolbar-icon">link</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="/ask" matTooltip="Ask Posts">
+            <mat-icon class="toolbar-icon">question_answer</mat-icon>
+        </button>
+        <span class="fill-space"></span>
+        <button mat-icon-button (click)="openProfile(currentUser)" matTooltip="{{currentUser.fullName}} ({{currentUser.username}})"
+                matBadge="{{currentUser.karma}}" matBadgeColor="warn">
+            <img class="avatar" [src]="currentUser.picture">
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
